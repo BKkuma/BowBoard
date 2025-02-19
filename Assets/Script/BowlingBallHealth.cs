@@ -22,9 +22,16 @@ public class BowlingBallHealth : MonoBehaviour
         }
     }
 
+    public void Heal(int amount)
+    {
+        currentHP += amount;
+        if (currentHP > maxHP) currentHP = maxHP; // จำกัดไม่ให้เกิน maxHP
+        Debug.Log("BowlingBall Healed! Current HP: " + currentHP);
+    }
+
     void Die()
     {
         Debug.Log("BowlingBall Destroyed!");
-        SceneManager.LoadScene("GameOverScene"); // โหลดฉากแพ้
+        SceneManager.LoadScene("GameOverScene");
     }
 }
