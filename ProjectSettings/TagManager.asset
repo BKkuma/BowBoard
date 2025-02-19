@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - BowlingBall
+  - Wall
+  - Item
   layers:
   - Default
   - TransparentFX

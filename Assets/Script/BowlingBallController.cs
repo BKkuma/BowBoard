@@ -12,6 +12,8 @@ public class BowlingBallController : MonoBehaviour
 
     void FixedUpdate()
     {
+        Debug.Log("Current Speed: " + moveSpeed);
+
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
 

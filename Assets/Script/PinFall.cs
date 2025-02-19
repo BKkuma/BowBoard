@@ -2,11 +2,16 @@ using UnityEngine;
 
 public class PinFall : MonoBehaviour
 {
+    private bool hasFallen = false;
+
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("BowlingBall"))
+        if (!hasFallen && collision.gameObject.CompareTag("BowlingBall"))
         {
-            GetComponent<Rigidbody>().isKinematic = false; // ทำให้พินล้มได้
+            GetComponent<Rigidbody>().isKinematic = false;
+            hasFallen = true;
+
+            FindObjectOfType<GameManager>().PinFallen();
         }
     }
 }
