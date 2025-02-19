@@ -19,6 +19,6 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("You Win!");
         // สามารถเปลี่ยนฉากหรือแสดง UI ชนะได้
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // รีสตาร์ทฉาก
+        SceneManager.LoadScene("WinScene");
     }
 }
