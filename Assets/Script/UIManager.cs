@@ -34,12 +34,12 @@ public class UIManager : MonoBehaviour
     {
         UpdateHPText();
         UpdatePinsText();
-        Debug.Log("Update Running"); // เช็คว่า Update ทำงานทุกเฟรม
+        
         if (isTimerRunning)
         {
             gameTime += Time.deltaTime;
             UpdateTimerUI();
-            Debug.Log("Game Time: " + gameTime);
+            
         }
     }
 

@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 6353638901191643119}
   m_Layer: 0
   m_Name: CactusPBR
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -473,11 +473,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8393b365be5201c4e8bb7d6f37d9c8e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  chaseSpeed: 4
-  jumpForce: 5
+  chaseSpeed: 3
   detectionRange: 7
   player: {fileID: 0}
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1 &6815017370818141249
 GameObject:
   m_ObjectHideFlags: 0

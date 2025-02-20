@@ -123,6 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boostAmount: 5
   boostDuration: 3
+  speedEffectPrefab: {fileID: 100000, guid: a27a781607ee88444b948f4a54b69343, type: 3}
 --- !u!54 &71343119970301238
 Rigidbody:
   m_ObjectHideFlags: 0

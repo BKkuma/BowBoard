@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BowlingBallController : MonoBehaviour
 {
@@ -25,8 +25,8 @@ public class BowlingBallController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            rb.velocity = Vector3.zero; // ��ش�������͹���
-            rb.AddForce(-collision.contacts[0].normal * 5f, ForceMode.Impulse); // ���͡�ҡ��ᾧ��硹���
+            rb.velocity = Vector3.zero; // หยุดการเคลื่อนที่
+            rb.AddForce(-collision.contacts[0].normal * 5f, ForceMode.Impulse); // เด้งออกจากกำแพงเล็กน้อย
         }
     }
 
