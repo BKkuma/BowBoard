@@ -1,14 +1,18 @@
-using UnityEngine;
-using UnityEngine.SceneManagement; // ãªéÊÓËÃÑºà»ÅÕèÂ¹©Ò¡
+ï»¿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public int totalPins = 5; // ¨Ó¹Ç¹¾Ô¹·Ñé§ËÁ´
-    private int fallenPins = 0; // ¾Ô¹·ÕèÅéÁáÅéÇ
+    public int totalPins = 5; // à¸ˆà¸³à¸™à¸§à¸™à¸à¸´à¸™à¸—à¸±à¹‰à¸‡à¸«à¸¡à¸”
+    private int fallenPins = 0; // âœ… à¹€à¸›à¸¥à¸µà¹ˆà¸¢à¸™à¹€à¸›à¹‡à¸™ Property à¹€à¸à¸·à¹ˆà¸­à¹ƒà¸«à¹‰ UIManager à¹€à¸‚à¹‰à¸²à¸–à¸¶à¸‡à¹„à¸”à¹‰
+
+    public int FallenPins => fallenPins; // âœ… à¹ƒà¸Šà¹‰ Property à¹ƒà¸«à¹‰ UIManager à¸”à¸¶à¸‡à¸„à¹ˆà¸²à¹„à¸”à¹‰
 
     public void PinFallen()
     {
         fallenPins++;
+        Debug.Log("Pins fallen: " + fallenPins);
+
         if (fallenPins >= totalPins)
         {
             WinGame();
@@ -18,7 +22,6 @@ public class GameManager : MonoBehaviour
     void WinGame()
     {
         Debug.Log("You Win!");
-        // ÊÒÁÒÃ¶à»ÅÕèÂ¹©Ò¡ËÃ×ÍáÊ´§ UI ª¹Ğä´é
         SceneManager.LoadScene("WinScene");
     }
 }

@@ -1,10 +1,12 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class BowlingBallHealth : MonoBehaviour
 {
     public int maxHP = 3;
     private int currentHP;
+
+    public int CurrentHP => currentHP; // ✅ เพิ่ม Getter ให้ UIManager ใช้งาน
 
     void Start()
     {
@@ -25,7 +27,7 @@ public class BowlingBallHealth : MonoBehaviour
     public void Heal(int amount)
     {
         currentHP += amount;
-        if (currentHP > maxHP) currentHP = maxHP; // �ӡѴ�������Թ maxHP
+        if (currentHP > maxHP) currentHP = maxHP; // จำกัดไม่ให้เกิน maxHP
         Debug.Log("BowlingBall Healed! Current HP: " + currentHP);
     }
 
