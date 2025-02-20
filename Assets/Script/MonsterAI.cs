@@ -4,22 +4,24 @@ using System.Collections;
 public class MonsterAI : MonoBehaviour
 {
     public float speed = 3f;
-    public float chaseSpeed = 6f;
+    public float chaseSpeed = 3f;
     public float jumpForce = 5f;
     public float detectionRange = 5f;
     public Transform player;
 
     private Rigidbody rb;
     private bool isChasing = false;
+    private Animator anim;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        StartCoroutine(RandomDirectionChange());
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
+        // ✅ ตรวจสอบว่าผู้เล่นอยู่ในระยะหรือไม่
         if (player != null && Vector3.Distance(transform.position, player.position) < detectionRange)
         {
             isChasing = true;
@@ -34,18 +36,28 @@ public class MonsterAI : MonoBehaviour
 
     void MoveMonster()
     {
-        if (player == null) return; // ถ้าไม่มีผู้เล่น ให้หยุดทำงาน
+        if (player == null) return;
 
         if (isChasing)
         {
             // ✅ ไล่ตามผู้เล่น
             Vector3 direction = (player.position - transform.position).normalized;
-            rb.velocity = new Vector3(direction.x * chaseSpeed, rb.velocity.y, direction.z * chaseSpeed);
+            rb.AddForce(new Vector3(direction.x, 0, direction.z) * chaseSpeed, ForceMode.Acceleration);
+
+            // ✅ หันหน้าไปทาง BowlingBall
+            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+            transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 5f); // หมุนให้ Smooth
         }
         else
         {
-            // ✅ เดินไปมาปกติ
-            rb.velocity = new Vector3(speed * (transform.localScale.x > 0 ? 1 : -1), rb.velocity.y, 0);
+            // ❌ ลบโค้ดที่ทำให้ Monster เคลื่อนที่เอง
+            rb.velocity = new Vector3(0, rb.velocity.y, 0);
+        }
+
+        // ✅ อัปเดต Animation
+        if (anim != null)
+        {
+            anim.SetBool("isWalking", isChasing);
         }
     }
 
@@ -66,25 +78,12 @@ public class MonsterAI : MonoBehaviour
         else if (collision.gameObject.CompareTag("BowlingBall"))
         {
             Jump();
-        }
-        if (collision.gameObject.CompareTag("BowlingBall"))
-        {
+
+            // ✅ ตรวจสอบ HP และลดเลือด
             BowlingBallHealth ballHealth = collision.gameObject.GetComponent<BowlingBallHealth>();
             if (ballHealth != null)
             {
-                ballHealth.TakeDamage(1); // Monster โจมตี 1 ดาเมจ
-            }
-        }
-    }
-
-    IEnumerator RandomDirectionChange()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(Random.Range(2f, 5f));
-            if (!isChasing)
-            {
-                Flip();
+                ballHealth.TakeDamage(1);
             }
         }
     }
@@ -102,12 +101,9 @@ public class MonsterAI : MonoBehaviour
         }
     }
 
-    // ✅ แสดงระยะไล่ล่า
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, detectionRange);
     }
-
-
 }
