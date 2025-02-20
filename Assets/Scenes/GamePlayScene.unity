@@ -3258,10 +3258,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 125296658}
-    - target: {fileID: 6353638901191643119, guid: 01d5468c28f62f648b58cedd502fad4a, type: 3}
-      propertyPath: obstacleMask.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
     - target: {fileID: 6541604594734862493, guid: 01d5468c28f62f648b58cedd502fad4a, type: 3}
       propertyPath: m_Name
       value: CactusPBR

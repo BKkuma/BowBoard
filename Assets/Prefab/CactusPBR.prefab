@@ -474,11 +474,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseSpeed: 3
-  detectionRange: 7
+  detectionRange: 10
   player: {fileID: 0}
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 128
 --- !u!1 &6815017370818141249
 GameObject:
   m_ObjectHideFlags: 0
